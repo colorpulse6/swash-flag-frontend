@@ -1,6 +1,6 @@
 import { Flag } from './types.ts';
 
-const API_URL = 'http://localhost:4000/api/flags';
+const API_URL = `${import.meta.env.VITE_API_URL}/flags`;
 
 export class FlagService {
   private static async handleResponse(response: Response) {
