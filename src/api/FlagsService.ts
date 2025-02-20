@@ -30,6 +30,7 @@ class FlagService {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
+        credentials: 'include',
       });
 
       if (!response.ok) {
@@ -60,6 +61,7 @@ class FlagService {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
+        credentials: 'include',
         body: JSON.stringify({ enabled: !currentEnabled }),
       });
 
@@ -85,6 +87,7 @@ class FlagService {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
+        credentials: 'include',
         body: JSON.stringify({
           name,
           enabled: false,
@@ -114,6 +117,7 @@ class FlagService {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
+        credentials: 'include',
       });
 
       if (!response.ok) {
