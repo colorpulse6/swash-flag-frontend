@@ -1,18 +1,19 @@
 import { AuthProvider } from './context/AuthContext.tsx';
 import { Navigate, Route, Routes } from 'react-router';
-import Login from './pages/Login.tsx';
-import Signup from './pages/Signup.tsx';
 import ProtectedRoute from './routes/ProtectedRoute.tsx';
 import Dashboard from './pages/Dashboard.tsx';
 import ApiTokens from './pages/APITokens.tsx';
 import Layout from './components/Layout.tsx';
+import LandingPage from './pages/Landing.tsx';
+import AuthPage from './pages/AuthPage.tsx';
 
 const App = () => {
   return (
     <AuthProvider>
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<AuthPage startLogin />} />
+        <Route path="/signup" element={<AuthPage />} />
         {/* Protected routes */}
         <Route element={<ProtectedRoute />}>
           <Route element={<Layout />}>
