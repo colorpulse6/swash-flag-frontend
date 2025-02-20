@@ -38,18 +38,18 @@ const LandingPage = () => {
           development workflow with ease.
         </p>
         <div className="mt-6 flex space-x-4">
-          <a
-            href="/login"
+          <Link
+            to="/login"
             className="px-6 py-3 rounded-lg bg-blue-500 hover:bg-blue-600 transition text-white text-lg"
           >
             Login
-          </a>
-          <a
-            href="/signup"
+          </Link>
+          <Link
+            to="/signup"
             className="px-6 py-3 rounded-lg bg-gray-700 hover:bg-gray-800 transition text-white text-lg"
           >
             Sign Up
-          </a>
+          </Link>
         </div>
       </motion.main>
 
