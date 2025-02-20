@@ -9,7 +9,7 @@ interface AuthResponse {
 }
 
 class AuthApi {
-  private API_URL = `${import.meta.env.VITE_API_URL}/auth`;
+  private API_URL = `${import.meta.env.VITE_API_URL}/api/auth`;
 
   async login(email: string, password: string): Promise<AuthResponse> {
     const response = await fetch(`${this.API_URL}/login`, {

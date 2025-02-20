@@ -1,7 +1,7 @@
 import { Flag } from './types.ts';
 
 class FlagService {
-  private static API_URL = `${import.meta.env.VITE_API_URL}/flags`;
+  private static API_URL = `${import.meta.env.VITE_API_URL}/api/flags`;
 
   private static async handleResponse(response: Response) {
     if (!response.ok) {
