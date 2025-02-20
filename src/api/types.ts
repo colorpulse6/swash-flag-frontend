@@ -3,3 +3,7 @@ export interface Flag {
   name: string;
   enabled: boolean;
 }
+
+export interface GenerateApiTokenResponse {
+  apiToken: string;
+}

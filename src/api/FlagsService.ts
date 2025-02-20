@@ -1,8 +1,8 @@
 import { Flag } from './types.ts';
 
-const API_URL = `${import.meta.env.VITE_API_URL}/flags`;
+class FlagService {
+  private static API_URL = `${import.meta.env.VITE_API_URL}/flags`;
 
-export class FlagService {
   private static async handleResponse(response: Response) {
     if (!response.ok) {
       const errorText = await response.text();
@@ -24,7 +24,7 @@ export class FlagService {
         throw new Error('No token found in localStorage');
       }
 
-      const response = await fetch('http://localhost:4000/api/flags', {
+      const response = await fetch(FlagService.API_URL, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ export class FlagService {
       if (!token) {
         throw new Error('No token found in localStorage');
       }
-      const response = await fetch(`${API_URL}/${id}`, {
+      const response = await fetch(`${FlagService.API_URL}/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -79,7 +79,7 @@ export class FlagService {
         throw new Error('No token found in localStorage');
       }
 
-      const response = await fetch(API_URL, {
+      const response = await fetch(FlagService.API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -108,7 +108,7 @@ export class FlagService {
         throw new Error('No token found in localStorage');
       }
 
-      const response = await fetch(`${API_URL}/${id}`, {
+      const response = await fetch(`${FlagService.API_URL}/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

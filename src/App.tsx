@@ -5,7 +5,6 @@ import Signup from './pages/Signup.tsx';
 import ProtectedRoute from './routes/ProtectedRoute.tsx';
 import Dashboard from './pages/Dashboard.tsx';
 import ApiTokens from './pages/APITokens.tsx';
-import FlagList from './components/FlagList.tsx';
 import Layout from './components/Layout.tsx';
 
 const App = () => {
@@ -17,7 +16,7 @@ const App = () => {
         {/* Protected routes */}
         <Route element={<ProtectedRoute />}>
           <Route element={<Layout />}>
-            <Route path="/" element={<FlagList />} />
+            <Route path="/" element={<Dashboard />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/api-tokens" element={<ApiTokens />} />
           </Route>

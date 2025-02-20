@@ -1,3 +1,5 @@
+import { GenerateApiTokenResponse } from './types.ts';
+
 interface AuthResponse {
   token: string;
   user: {
@@ -63,7 +65,7 @@ class AuthApi {
     return response.json(); // Returns an array of tokens
   };
 
-  generateApiToken = async () => {
+  generateApiToken = async (): Promise<GenerateApiTokenResponse> => {
     const token = localStorage.getItem('token');
 
     const response = await fetch(`${this.API_URL}/generate-api-token`, {
@@ -74,14 +76,13 @@ class AuthApi {
       },
     });
 
-    console.log(response);
-
     if (!response.ok) {
       throw new Error('Failed to generate API token');
     }
 
-    return response.json().apiToken;
+    return response.json();
   };
+
   logout() {
     localStorage.removeItem('token');
   }

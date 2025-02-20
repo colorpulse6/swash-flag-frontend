@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import Navbar from '../components/Navbar';
 import CreateFlagModal from '../components/CreateFlagModal';
+import FlagList from '../components/FlagList.tsx';
 
 const Dashboard = () => {
   const { logout } = useContext(AuthContext)!;
@@ -26,6 +27,7 @@ const Dashboard = () => {
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
         />
+        <FlagList />
       </div>
     </div>
   );
