@@ -33,7 +33,6 @@ class AuthApi {
   }
 
   async signup(email: string, password: string): Promise<AuthResponse> {
-    // ✅ Return type
     const response = await fetch(`${this.API_URL}/signup`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -41,6 +40,7 @@ class AuthApi {
     });
 
     if (!response.ok) {
+      console.error(response);
       throw new Error('Signup failed');
     }
 
