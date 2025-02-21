@@ -32,9 +32,6 @@ importers:
       react-tooltip:
         specifier: ^5.28.0
         version: 5.28.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      swash-sdk:
-        specifier: link:../../../Library/pnpm/global/5/node_modules/swash-sdk
-        version: link:../../../Library/pnpm/global/5/node_modules/swash-sdk
     devDependencies:
       '@eslint/js':
         specifier: ^9.19.0
