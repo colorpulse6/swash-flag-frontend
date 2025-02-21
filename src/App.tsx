@@ -4,8 +4,8 @@ import LandingPage from './pages/Landing.tsx';
 import AuthPage from './pages/AuthPage.tsx';
 import ProtectedRoute from './routes/ProtectedRoute.tsx';
 import Layout from './components/Layout.tsx';
-import FlagsPage from './pages/FlagsPage.tsx';
-import ApiTokensPage from './pages/APITokensPage.tsx';
+import FlagsPage from './pages/FlagsPage/FlagsPage.tsx';
+import ApiTokensPage from './pages/APITokensPage/APITokensPage.tsx';
 
 export default function App() {
   return (

@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { AuthService } from '../api/AuthService.ts';
-
-const HIDDEN_STRING = '*********************************';
+import { AuthService } from '../../api/AuthService.ts';
+import { SkeletonLoader } from '../../components/SkeletonLoader.tsx';
 
 export default function ApiTokensPage() {
   const queryClient = useQueryClient();
@@ -25,7 +24,7 @@ export default function ApiTokensPage() {
     },
   });
 
-  if (isLoading) return <p>Loading API tokens...</p>;
+  if (isLoading) return <SkeletonLoader type="tokens" />;
   if (isError) return <p>Error loading API tokens.</p>;
 
   const apiToken = apiTokensResponse || {};
@@ -36,7 +35,7 @@ export default function ApiTokensPage() {
       <div className="flex items-center space-x-3">
         <input
           type={tokenVisible ? 'text' : 'password'}
-          value={apiToken.apiToken || HIDDEN_STRING}
+          value={apiToken.apiToken}
           readOnly
           className="p-3 bg-gray-800 rounded-lg w-full"
         />
@@ -51,7 +50,7 @@ export default function ApiTokensPage() {
         onClick={() => generateTokenMutation.mutate()}
         className="mt-4 p-3 bg-green-500 hover:bg-green-600 text-white rounded-lg"
       >
-        ➕ Generate New Token
+        Generate New Token
       </button>
     </div>
   );

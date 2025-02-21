@@ -1,4 +1,4 @@
-const ConfirmDeleteDialog = ({
+const ConfirmDeleteFlagDialog = ({
   onCancel,
   onConfirm,
   isPending,
@@ -11,7 +11,7 @@ const ConfirmDeleteDialog = ({
 }) => {
   return (
     <div className="fixed inset-0 bg-opacity-50 backdrop-blur-sm flex justify-center items-center">
-      <div className="card w-96 p-6">
+      <div className="card w-96 p-6 font-medium text-gray-700">
         <h3 className="text-lg font-bold mb-4">Confirm Deletion</h3>
         <p>Are you sure you want to delete this {itemName}?</p>
         <div className="flex justify-end space-x-4 mt-6">
@@ -31,4 +31,4 @@ const ConfirmDeleteDialog = ({
   );
 };
 
-export default ConfirmDeleteDialog;
+export default ConfirmDeleteFlagDialog;

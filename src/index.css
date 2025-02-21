@@ -34,6 +34,10 @@ button {
   @apply bg-[var(--color-secondary)] text-white px-4 py-2 rounded-md hover:bg-gray-700 transition-colors;
 }
 
+.button-danger {
+  @apply bg-[var(--color-danger)] text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors;
+}
+
 .sidebar {
   transition: transform 0.2s ease-in-out;
 }

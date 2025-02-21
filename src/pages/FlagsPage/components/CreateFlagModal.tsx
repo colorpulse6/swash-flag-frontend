@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import FlagService from '../api/FlagsService.ts';
+import FlagService from '../../../api/FlagsService.ts';
 
 const CreateFlagModal = ({
   isOpen,
@@ -37,13 +37,11 @@ const CreateFlagModal = ({
 
   return (
     <div className="fixed inset-0 bg-opacity-50 backdrop-blur-sm flex justify-center items-center">
-      <div className="card w-96">
+      <div className="card w-96 font-medium text-gray-700">
         <h2 className="text-xl font-bold mb-4">Create Feature Flag</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">
-              Flag Name
-            </label>
+            <label className="block text-sm">Flag Name</label>
             <input
               type="text"
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md"

@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import FlagService from '../api/FlagsService.ts';
-import ToggleSwitch from '../components/ToggleSwitch.tsx';
-import ConfirmDeleteDialog from '../components/ConfirmDeleteDialog.tsx';
-import CreateFlagModal from '../components/CreateFlagModal.tsx';
+import FlagService from '../../api/FlagsService.ts';
+import ToggleSwitch from '../../components/ToggleSwitch.tsx';
+import ConfirmDeleteFlagDialog from './components/ConfirmDeleteFlagDialog.tsx';
+import CreateFlagModal from './components/CreateFlagModal.tsx';
+import { SkeletonLoader } from '../../components/SkeletonLoader.tsx';
 
 const FlagsPage = () => {
   const queryClient = useQueryClient();
@@ -52,7 +53,7 @@ const FlagsPage = () => {
     }
   };
 
-  if (isLoading) return <p>Loading feature flags...</p>;
+  if (isLoading) return <SkeletonLoader type="flags" />;
 
   if (isError) {
     return (
@@ -106,7 +107,7 @@ const FlagsPage = () => {
       )}
 
       {flagToDelete && (
-        <ConfirmDeleteDialog
+        <ConfirmDeleteFlagDialog
           onCancel={() => setFlagToDelete(null)}
           onConfirm={confirmDelete}
           isPending={deleteMutation.isPending}
