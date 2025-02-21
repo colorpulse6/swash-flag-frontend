@@ -7,7 +7,7 @@ const LandingPage = () => {
       {/* Header */}
       <header className="absolute top-0 left-0 w-full p-6 flex justify-between items-center">
         <div className="text-2xl font-bold">
-          <Link to="/">Swash App</Link>
+          <Link to="/">Swash Flag</Link>
         </div>
         <nav className="hidden md:flex space-x-6">
           <a href="#" className="hover:text-gray-400">
@@ -31,7 +31,7 @@ const LandingPage = () => {
       >
         <h1 className="text-4xl md:text-6xl font-extrabold leading-tight">
           Control Your Features <br />
-          with <span className="text-blue-400">Swash App</span>
+          with <span className="text-blue-400">Swash Flag</span>
         </h1>
         <p className="mt-4 text-lg text-gray-400 max-w-2xl">
           Deploy, test, and manage feature flags effortlessly. Power up your
@@ -55,7 +55,7 @@ const LandingPage = () => {
 
       {/* Footer */}
       <footer className="absolute bottom-0 w-full p-4 text-center text-gray-500">
-        © {new Date().getFullYear()} Swash App. All rights reserved.
+        © {new Date().getFullYear()} Swash Flag. All rights reserved.
       </footer>
     </div>
   );

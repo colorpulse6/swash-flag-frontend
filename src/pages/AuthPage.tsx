@@ -22,7 +22,7 @@ const AuthPage = ({ startLogin = true }: { startLogin?: boolean }) => {
     <div className="relative min-h-screen bg-gradient-to-br from-gray-900 to-black text-white flex flex-col items-center justify-center">
       <div className="absolute top-6 left-6 text-2xl font-bold">
         {' '}
-        <Link to="/">Swash App</Link>
+        <Link to="/">Swash Flag</Link>
       </div>
 
       <AnimatePresence mode="wait">

@@ -30,7 +30,7 @@ export default function Sidebar({
           className={`transition-transform ${isOpen ? 'rotate-180' : ''}`}
           size={20}
         />
-        {isOpen && <span className="ml-2 text-lg font-bold">Swash App</span>}
+        {isOpen && <span className="ml-2 text-lg font-bold">Swash Flag</span>}
       </button>
 
       {/* Navigation */}

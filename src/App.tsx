@@ -19,14 +19,12 @@ export default function App() {
         {/* Protected Routes */}
         <Route element={<ProtectedRoute />}>
           <Route element={<Layout />}>
-            <Route index element={<FlagsPage />} />
             <Route path="/dashboard" element={<FlagsPage />} />
             <Route path="/api-tokens" element={<ApiTokensPage />} />
           </Route>
         </Route>
 
-        {/* Redirect unknown routes to login */}
-        <Route path="*" element={<Navigate to="/login" />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </AuthProvider>
   );

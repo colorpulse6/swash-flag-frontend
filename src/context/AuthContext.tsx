@@ -63,7 +63,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const logout = () => {
     AuthService.logout();
     setToken(null);
-    navigate('/login');
+    navigate('/');
   };
 
   return (
