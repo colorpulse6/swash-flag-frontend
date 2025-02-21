@@ -2,14 +2,12 @@ import React, { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import FlagService from '../api/FlagsService.ts';
 
-interface CreateFlagModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
-const CreateFlagModal: React.FC<CreateFlagModalProps> = ({
+const CreateFlagModal = ({
   isOpen,
   onClose,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
 }) => {
   const [flagName, setFlagName] = useState('');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);

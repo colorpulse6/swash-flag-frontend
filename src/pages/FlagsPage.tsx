@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import ToggleSwitch from './ToggleSwitch';
-import FlagService from '../api/FlagsService';
-import ConfirmDeleteDialog from './ConfirmDeleteDialog';
+import { useState } from 'react';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import FlagService from '../api/FlagsService.ts';
+import ToggleSwitch from '../components/ToggleSwitch.tsx';
+import ConfirmDeleteDialog from '../components/ConfirmDeleteDialog.tsx';
+import CreateFlagModal from '../components/CreateFlagModal.tsx';
 
-const FlagList: React.FC = () => {
+const FlagsPage = () => {
   const queryClient = useQueryClient();
   const [flagToDelete, setFlagToDelete] = useState<string | null>(null);
+  const [isCreateFlagModalOpen, setIsCreateFlagModalOpen] = useState(false);
 
   const {
     data: flags,
@@ -57,17 +59,17 @@ const FlagList: React.FC = () => {
       <p className="text-red-600">Error: {error && (error as Error).message}</p>
     );
   }
-
   return (
-    <div className="container mx-auto py-6 px-4">
-      <div className="space-y-4">
+    <div>
+      <h2 className="text-3xl font-bold mb-6">Feature Flags</h2>
+      <ul className="space-y-3">
         {Array.isArray(flags) &&
           flags?.map((flag) => (
             <div
               key={flag.id}
-              className="bg-white shadow-md rounded-lg p-4 flex justify-between items-center"
+              className="bg-gray-800 shadow-md rounded-lg p-4 flex justify-between items-center"
             >
-              <span className="text-gray-800 font-medium">{flag.name}</span>
+              <span className="font-medium">{flag.name}</span>
               <div className="flex items-center space-x-4">
                 <ToggleSwitch
                   enabled={flag.enabled}
@@ -87,17 +89,32 @@ const FlagList: React.FC = () => {
               </div>
             </div>
           ))}
-      </div>
+      </ul>
+
+      <button
+        onClick={() => setIsCreateFlagModalOpen(true)}
+        className="mt-4 p-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg"
+      >
+        + Add Flag
+      </button>
+
+      {isCreateFlagModalOpen && (
+        <CreateFlagModal
+          isOpen={isCreateFlagModalOpen}
+          onClose={() => setIsCreateFlagModalOpen(false)}
+        />
+      )}
 
       {flagToDelete && (
         <ConfirmDeleteDialog
           onCancel={() => setFlagToDelete(null)}
           onConfirm={confirmDelete}
           isPending={deleteMutation.isPending}
+          itemName="feature flag"
         />
       )}
     </div>
   );
 };
 
-export default FlagList;
+export default FlagsPage;

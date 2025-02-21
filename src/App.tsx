@@ -1,31 +1,33 @@
-import { AuthProvider } from './context/AuthContext.tsx';
-import { Navigate, Route, Routes } from 'react-router';
-import ProtectedRoute from './routes/ProtectedRoute.tsx';
-import Dashboard from './pages/Dashboard.tsx';
-import ApiTokens from './pages/APITokens.tsx';
-import Layout from './components/Layout.tsx';
+import { Routes, Route, Navigate } from 'react-router';
+import { AuthProvider } from './context/AuthContext';
 import LandingPage from './pages/Landing.tsx';
 import AuthPage from './pages/AuthPage.tsx';
+import ProtectedRoute from './routes/ProtectedRoute.tsx';
+import Layout from './components/Layout.tsx';
+import FlagsPage from './pages/FlagsPage.tsx';
+import ApiTokensPage from './pages/APITokensPage.tsx';
 
-const App = () => {
+export default function App() {
   return (
     <AuthProvider>
       <Routes>
+        {/* Public Routes */}
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<AuthPage startLogin />} />
         <Route path="/signup" element={<AuthPage />} />
-        {/* Protected routes */}
+
+        {/* Protected Routes */}
         <Route element={<ProtectedRoute />}>
           <Route element={<Layout />}>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/api-tokens" element={<ApiTokens />} />
+            <Route index element={<FlagsPage />} />
+            <Route path="/dashboard" element={<FlagsPage />} />
+            <Route path="/api-tokens" element={<ApiTokensPage />} />
           </Route>
         </Route>
+
+        {/* Redirect unknown routes to login */}
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </AuthProvider>
   );
-};
-
-export default App;
+}

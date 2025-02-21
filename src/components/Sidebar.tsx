@@ -1,81 +1,73 @@
-import React from 'react';
-import { FaFlag, FaPassport } from 'react-icons/fa';
-import { Tooltip } from 'react-tooltip';
-import SwashIcon from '../assets/swash-flag-logo.png';
-import { NavLink } from 'react-router';
+import { motion } from 'framer-motion';
+import { Link, useLocation } from 'react-router';
+import { FiFlag, FiKey, FiLogOut, FiChevronRight } from 'react-icons/fi';
+import { AuthContext } from '../context/AuthContext';
+import { useContext } from 'react';
 
-const SidebarItem: React.FC<{
+export default function Sidebar({
+  isOpen,
+  toggleSidebar,
+}: {
   isOpen: boolean;
-  tooltipContent: string;
-  icon: React.ReactNode;
-  to: string;
-  children: React.ReactNode;
-}> = ({ isOpen, tooltipContent, icon, to, children }) => {
-  return (
-    <NavLink
-      to={to}
-      className={({ isActive }) =>
-        `p-4 hover:bg-gray-200 cursor-pointer flex items-center ${
-          isOpen ? 'space-x-2' : 'justify-center'
-        } ${isActive ? 'text-blue-500' : 'text-gray-800'}`
-      }
-      data-tooltip-id="sidebar-tooltip"
-      data-tooltip-content={tooltipContent}
-    >
-      {icon}
-      {isOpen && <span>{children}</span>}
-    </NavLink>
-  );
-};
+  toggleSidebar: () => void;
+}) {
+  const location = useLocation();
+  const { logout } = useContext(AuthContext)!;
 
-const Sidebar: React.FC<{
-  isOpen: boolean;
-  onToggle: () => void;
-}> = ({ isOpen, onToggle }) => {
   return (
-    <div
-      className={`bg-white shadow-md h-screen transition-all duration-200 ${
-        isOpen ? 'w-48' : 'w-16'
-      }`}
+    <motion.div
+      initial={{ width: isOpen ? 256 : 80 }}
+      animate={{ width: isOpen ? 256 : 80 }}
+      transition={{ duration: 0.3 }}
+      className="fixed left-0 top-0 h-full bg-gray-900 text-white shadow-lg p-4 flex flex-col z-50"
     >
-      <div
-        className={`p-4 flex gap-2 ${isOpen ? 'flex-row' : 'flex-col items-center'}`}
+      {/* Sidebar Toggle */}
+      <button
+        onClick={toggleSidebar}
+        className="text-white mb-6 p-2 hover:bg-gray-700 rounded-md flex items-center"
       >
-        <button
-          onClick={onToggle}
-          className="text-gray-600 hover:text-gray-800 cursor-pointer"
-        >
-          {isOpen ? '←' : '→'}
-        </button>
-        <img
-          src={SwashIcon}
-          className="w-8 h-8 rounded-full"
-          alt="swash-icon"
+        <FiChevronRight
+          className={`transition-transform ${isOpen ? 'rotate-180' : ''}`}
+          size={20}
         />
-      </div>
-      <nav className="mt-4">
-        <ul>
-          <SidebarItem
-            isOpen={isOpen}
-            tooltipContent="Flags"
-            icon={<FaFlag className="text-xl text-gray-800" />}
-            to="/dashboard"
-          >
-            Flags
-          </SidebarItem>
-          <SidebarItem
-            isOpen={isOpen}
-            tooltipContent="API Tokens"
-            icon={<FaPassport className="text-xl text-gray-800" />}
-            to="/api-tokens"
-          >
-            API Tokens
-          </SidebarItem>
-        </ul>
-      </nav>
-      {!isOpen && <Tooltip id="sidebar-tooltip" place="right" />}
-    </div>
-  );
-};
+        {isOpen && <span className="ml-2 text-lg font-bold">Swash App</span>}
+      </button>
 
-export default Sidebar;
+      {/* Navigation */}
+      <nav className="flex-grow space-y-3">
+        <Link
+          to="/dashboard"
+          className={`flex items-center p-3 rounded-lg transition ${
+            location.pathname === '/dashboard'
+              ? 'bg-blue-500'
+              : 'hover:bg-gray-700'
+          }`}
+        >
+          <FiFlag className="text-xl" />
+          {isOpen && <span className="ml-2">Feature Flags</span>}
+        </Link>
+
+        <Link
+          to="/api-tokens"
+          className={`flex items-center p-3 rounded-lg transition ${
+            location.pathname === '/api-tokens'
+              ? 'bg-blue-500'
+              : 'hover:bg-gray-700'
+          }`}
+        >
+          <FiKey className="text-xl" />
+          {isOpen && <span className="ml-2">API Tokens</span>}
+        </Link>
+      </nav>
+
+      {/* Logout */}
+      <button
+        className="flex items-center p-3 rounded-lg transition hover:bg-red-600"
+        onClick={logout}
+      >
+        <FiLogOut className="text-xl" />
+        {isOpen && <span className="ml-2">Logout</span>}
+      </button>
+    </motion.div>
+  );
+}
